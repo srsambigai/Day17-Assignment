@@ -1,0 +1,133 @@
+ const apiKey="2496cafbd112a50ad1c9be665adada37";
+const apiUrl="https://api.openweathermap.org/data/2.5/weather?units=metric&q="; 
+ async function displayWeather(city){ 
+//const response=await fetch(apiUrl+city+`&appid=${apiKey}`);
+const response=await fetch(apiUrl+city+`&appid=${apiKey}`);
+    var data=await response.json();
+
+    var parentContainer=document.body.appendChild(document.createElement('div'));
+    parentContainer.setAttribute("class","container");
+    parentContainer.style.display="flex";
+    parentContainer.style.background="linear-gradient(90deg, #3A3B3C,#52595D)";
+    parentContainer.style.position= "absolute";
+    parentContainer.style.top="50%";
+    parentContainer.style.left="50%";
+    parentContainer.style.transform="translate(-50%,-50%)";
+    parentContainer.style.height="550px";
+    parentContainer.style.width="700px";
+
+    let cityContainer = parentContainer.appendChild(document.createElement("div"));
+     cityContainer.setAttribute("class","card");
+     cityContainer.style.display="flex";
+     cityContainer.style.background="#837E7C";
+     cityContainer.style.height="250px";
+     cityContainer.style.width="450px";
+     cityContainer.style.margin="50px";
+     cityContainer.style.padding="100px";
+
+     var cityName=cityContainer.appendChild(document.createElement("label"));
+     cityName.setAttribute("class","code");
+     //code.setAttribute("value","Country Code :");
+     cityName.style.background="linear-gradient(90deg, #3A3B3C,#52595D)";
+     cityName.style.position="absolute";
+     cityName.style.height="50px";
+     cityName.style.width="300px";
+     cityName.style.top="50px";
+     cityName.style.left="200px";
+     cityName.textContent=data.name;
+     cityName.style.fontSize="30px";
+     cityName.style.fontWeight="bold";
+     cityName.style.textAlign="center";
+     cityName.style.color="white";
+
+     var weather=cityContainer.appendChild(document.createElement("label"));
+     weather.setAttribute("class","weather");
+     weather.style.background="linear-gradient(90deg, #3A3B3C,#52595D)";
+     weather.style.position="absolute";
+     weather.style.height="50px";
+     weather.style.width="300px";
+     weather.style.top="150px";
+     weather.style.left="70px";
+     weather.textContent="Current Weather";
+     weather.style.fontSize="30px";
+     weather.style.fontWeight="bold";
+     weather.style.textAlign="center";
+     weather.style.color="white";
+
+     var resweather=cityContainer.appendChild(document.createElement("label"));
+     resweather.setAttribute("class","weather");
+     resweather.style.background="linear-gradient(90deg, #3A3B3C,#52595D)";
+     resweather.style.position="absolute";
+     resweather.style.height="50px";
+     resweather.style.width="300px";
+     resweather.style.top="150px";
+     resweather.style.left="350px";
+     resweather.textContent=Math.round(data.main.temp) +" °C";
+     resweather.style.fontSize="30px";
+     resweather.style.fontWeight="bold";
+     resweather.style.textAlign="center";
+     resweather.style.color="white";
+
+     var humidity=cityContainer.appendChild(document.createElement("label"));
+     humidity.setAttribute("class","humidity");
+     humidity.style.background="linear-gradient(90deg, #3A3B3C,#52595D)";
+     humidity.style.position="absolute";
+     humidity.style.height="50px";
+     humidity.style.width="300px";
+     humidity.style.top="250px";
+     humidity.style.left="70px";
+     humidity.textContent="Humidity";
+     humidity.style.fontSize="30px";
+     humidity.style.fontWeight="bold";
+     humidity.style.textAlign="center";
+     humidity.style.color="white";
+
+     var reshumidity=cityContainer.appendChild(document.createElement("label"));
+     reshumidity.setAttribute("class","humidity");
+     reshumidity.style.background="linear-gradient(90deg, #3A3B3C,#52595D)";
+     reshumidity.style.position="absolute";
+     reshumidity.style.height="50px";
+     reshumidity.style.width="300px";
+     reshumidity.style.top="250px";
+     reshumidity.style.left="350px";
+     reshumidity.textContent=data.main.humidity +"%";
+     reshumidity.style.fontSize="30px";
+     reshumidity.style.fontWeight="bold";
+     reshumidity.style.textAlign="center";
+     reshumidity.style.color="white";
+
+     var wind=cityContainer.appendChild(document.createElement("label"));
+     wind.setAttribute("class","wind");
+     wind.style.background="linear-gradient(90deg, #3A3B3C,#52595D)";
+     wind.style.position="absolute";
+     wind.style.height="50px";
+     wind.style.width="300px";
+     wind.style.top="350px";
+     wind.style.left="70px";
+     wind.textContent="Wind Speed";
+     wind.style.fontSize="30px";
+     wind.style.fontWeight="bold";
+     wind.style.textAlign="center";
+     wind.style.color="white";
+
+     var reswind=cityContainer.appendChild(document.createElement("label"));
+     reswind.setAttribute("class","wind");
+     reswind.style.background="linear-gradient(90deg, #3A3B3C,#52595D)";
+     reswind.style.position="absolute";
+     reswind.style.height="50px";
+     reswind.style.width="300px";
+     reswind.style.top="350px";
+     reswind.style.left="350px";
+     reswind.textContent=data.wind.speed+" km/hr";
+     reswind.style.fontSize="30px";
+     reswind.style.fontWeight="bold";
+     reswind.style.textAlign="center";
+     reswind.style.color="white";     
+}
+//console.log(window.location.href);
+const queryString = window.location.search;
+console.log(queryString);
+const urlParams = new URLSearchParams(queryString);
+const city = urlParams.get('city')
+console.log(city);
+displayWeather(city);
